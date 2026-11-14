@@ -1,0 +1,14 @@
+{
+  "name": "cinevault-experience",
+  "version": "1.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json",
+    "build": "npm run typecheck && node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

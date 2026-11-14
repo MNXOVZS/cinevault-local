@@ -1,0 +1,32 @@
+# 本机资料库、媒体与凭据
+/data/
+/.env
+/.env.*
+*.sqlite3*
+*.db*
+*.log
+*secret*.json
+*credentials*.json
+*.pem
+
+# 本机依赖、模型及程序包
+/bin/
+/runtime/
+/ai/site-packages*/
+/ai/vision/weights/
+/ai/vision/runtime/
+/ai/vision/download-cache/
+*.onnx
+*.gguf
+*.exe
+*.dll
+*.dylib
+*.pyd
+*.zip
+*.partial
+
+# 构建缓存
+node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store

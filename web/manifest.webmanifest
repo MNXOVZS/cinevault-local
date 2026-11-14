@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "映库 CineVault",
+  "short_name": "映库",
+  "description": "本地私人视频资料库",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101115",
+  "theme_color": "#101115",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

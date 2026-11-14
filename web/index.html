@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141518">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="映库">
+  <meta name="description" content="映库 CineVault，本地私人视频与图片资料库。">
+  <title>映库 · CineVault</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#library" aria-label="映库 首页"><span class="brand-mark"><i></i><i></i><i></i></span><span>映库<small>CINEVAULT</small></span></a>
+    <div class="nav-caption">本地资料库</div>
+    <nav aria-label="主导航">
+      <button class="nav-item active" data-nav="library"><span data-icon="library"></span><span>全部资料</span><b id="nav-count">0</b></button>
+      <button class="nav-item" data-nav="favorites"><span data-icon="heart"></span><span>我的收藏</span></button>
+      <button class="nav-item" data-nav="continue"><span data-icon="clock"></span><span>继续观看</span></button>
+      <div class="nav-divider"></div>
+      <button class="nav-item" data-nav="sources"><span data-icon="folder"></span><span>媒体来源</span></button>
+      <button class="nav-item" data-nav="analysis"><span data-icon="spark"></span><span>分析中心</span></button>
+      <button class="nav-item" data-nav="health"><span data-icon="shield"></span><span>资料库体检</span><i class="nav-dot" id="health-dot" hidden></i></button>
+      <button class="nav-item" data-nav="settings"><span data-icon="settings"></span><span>设置</span><i class="nav-dot" id="audit-dot" title="有变动记录" aria-label="有变动记录" hidden></i></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="local-label"><i></i> 本地私人资料库</div><p>清楚收藏，随时回看。</p><span class="version">CINEVAULT <b>1.8</b></span></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="breadcrumb"><span>我的影院</span><i>/</i><strong id="page-label">全部资料</strong></div>
+      <div class="topbar-actions"><button class="icon-button theme-toggle" data-action="toggle-theme" aria-label="切换日间模式" title="切换日间模式"><span data-icon="sun"></span></button><label class="search-box"><span data-icon="search"></span><input id="search" type="search" placeholder="搜索名称、标签、内容分类…" autocomplete="off" aria-label="搜索影片"><kbd>/</kbd></label><button class="button primary compact" data-action="add"><span data-icon="plus"></span><span>添加资料</span></button></div>
+    </header>
+    <main id="main" aria-live="polite"><div class="loading"><span class="spinner"></span>正在打开你的资料库…</div></main>
+    <footer class="app-footer"><span>YOUR COLLECTION. YOUR CINEMA.</span><span id="connection-status">正在连接本地服务</span></footer>
+  </div>
+  <div class="drop-overlay" id="drop-overlay" hidden><span data-icon="upload"></span><h2>把媒体放进映库</h2><p>松开后，选择原位关联或复制入库。</p></div>
+  <dialog id="dialog" aria-label="资料详情"><div id="dialog-content"></div></dialog>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script src="/experience.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
