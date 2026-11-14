@@ -1,0 +1,28 @@
+# [INPUT]: 使用者填写场景与期望操作。
+# [OUTPUT]: 生成一条公开功能建议。
+# [POS]: 在故障报告之外收集产品需求。
+# [PROTOCOL]: Update this header on change, then check AGENTS.md
+name: 功能建议 · Feature request
+description: 说说你想用映库完成什么。Suggest a feature or workflow improvement.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        此建议将公开。请用文字或合成样例描述场景，省略真实路径、私人媒体、账号信息和密钥。
+        This suggestion is public. Use a synthetic example and omit private media, identifying details, and secrets.
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 你想完成什么 / Your use case
+      description: 在什么设备上、什么情况下使用？现在在哪一步遇到困难？
+      placeholder: 例如，我在 Windows 和 Mac 之间换用同一块硬盘，每次都要找回原来的目录。
+    validations:
+      required: true
+  - type: textarea
+    id: desired-result
+    attributes:
+      label: 你希望怎样操作 / Desired workflow
+      placeholder: 例如，插盘后显示可能匹配的旧目录，我确认一次即可继续浏览。
+    validations:
+      required: true

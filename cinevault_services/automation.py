@@ -1,10 +1,16 @@
-"""New-record-only, one-attempt automation and explicit bounded local batches."""
+"""[INPUT]: 片目状态、后台任务与视觉概述版本。
+[OUTPUT]: 新资料自动任务、手动批处理与执行记录。
+[POS]: 管理提交规则，将分析交给对应引擎。
+[PROTOCOL]: Update this header on change, then check AGENTS.md
+"""
 from __future__ import annotations
 
 import json
 import re
 
-VERSIONS={'timeline':'objective-regions-v2','describe':'generic-summary-v1','classify':'nsfw-classifier-v1','preview':'hover-v2-480x270-24fps'}
+from .providers import VERSION as DESCRIPTION_VERSION
+
+VERSIONS={'timeline':'objective-regions-v2','describe':DESCRIPTION_VERSION,'classify':'nsfw-classifier-v1','preview':'hover-v2-480x270-24fps'}
 
 
 class AutomationService:

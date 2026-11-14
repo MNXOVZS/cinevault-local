@@ -4,7 +4,7 @@
 - `__init__.py`：服务包标记。
 - `analysis.py`：对视频抽样，记录音画候选时刻。
 - `audit.py`：追加变动事件，核对登记数量。
-- `automation.py`：为新资料提交有界的本机分析。
+- `automation.py`：为新资料提交有界的本机分析，使用引擎版本记录结果。
 - `cache.py`：保留登记预览，预算管理兼容副本。
 - `compatibility.py`：解释播放失败与原片状态。
 - `library_health.py`：按来源汇总预览与异常。
@@ -14,7 +14,7 @@
 - `model_tags.py`：索引模型标签，独立于手动标签。
 - `models.py`：读取本机分类组件配置。
 - `playback.py`：选择直接播放、换封装或转码。
-- `providers.py`：验证请求目标与模型抽样授权。
+- `providers.py`：验证模型请求与抽样授权，写入通用场景和普通动作标签。
 
 `server.py` 为服务注入片目、文件和任务能力。
 

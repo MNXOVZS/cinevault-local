@@ -1,43 +1,39 @@
-# 映库 CineVault Local · 发布文案
+# 映库 · CineVault Local · 发布文案
 
 ## GitHub 简介
 
-> 本地影音资料库，关联硬盘目录，浏览预览、检索标签，并核对文件变动。
+> 映库 · CineVault Local｜为所有本地视频打造的私人影库。整理手机视频、动画、漫剧、电影与 18+ 视频。自动静音预览、标签检索、离线 AI。Windows / macOS。
 
 **English**
 
-> A local media library with folder indexing, video previews, searchable tags, and a catalogue activity log.
+> 映库 · CineVault Local | A private offline library for all your local videos: phone footage, anime, comic adaptations, films and 18+ collections. Autoplay previews, searchable tags and optional local AI, for Windows and macOS.
 
 **Topics** `media-library` `local-first` `self-hosted` `ffmpeg` `sqlite` `video` `offline-ai`
 
-## 首发标题与正文
+## 发布标题和正文
 
-**映库 CineVault Local 1.8 · 首次公开预览**
+**映库 · CineVault Local 公开预览 2｜让硬盘里的视频重新好找**
 
-我做了一个本机影音资料库，想解决一个具体问题：硬盘里存了不少视频和照片，找起来却只能翻文件夹、猜文件名。
+旅行视频还在手机导出文件夹，漫剧分在几块盘，收藏的老片只有难以记住的文件名。映库把它们整理在一个界面里：手机视频、短片、动画、漫剧、电影、照片，以及你有权保留的 18+ 私人收藏。
 
-映库可以登记你已有的目录。打开浏览器，就能通过封面、静音短片、标签和时间轴定位想看的内容。外接硬盘重新接入时，可以核对来源状态和文件变动。启用可选本机模型后，也可以从少量抽样画面生成中文概述和场景标签。
+打开就可以看封面动起来，点进影片后用时间轴缩略图找画面。喜欢的加到「我的收藏」，18+ 内容可以单独分区，使用手动标签细分。可选的 **Qwen3-VL 2B** 在本机根据抽样画面自动生成场景、清晰可见的普通动作标签和中文概述；公开预览版未集成专门的 18+ 自动分类与性动作识别。
 
-第一版先发布源码和启动说明。欢迎用有权使用的少量样片试跑。反馈时可以注明系统、FFmpeg 版本和复现步骤，对照现有功能会更快。
+原片留在原目录。你选择扫描哪块已挂载的盘、哪些目录，映库记录新增、缺失和离线状态。目录默认只读；换电脑后可挂载原来的硬盘并核对新位置。基础浏览、播放、打标签和变动核对都可以离线完成。影片可直放时直接播，需要转换时才生成单独的兼容副本。
 
-## 功能介绍长文
+[从源码运行](../README.md) · [公开预览下载](https://github.com/MNXOVZS/cinevault-local/releases) · [报告 Bug 或建议](https://github.com/MNXOVZS/cinevault-local/issues/new/choose)
 
-硬盘适合保存原片。随着资料增多，回找画面和核对文件变动会变得费时。映库在本机为原有目录建立片目，给每条记录配上封面、预览、标签和观看进度。
-
-**先把资料找出来。** 关联目录后，可以按片名、标签和概述搜索。封面右下角的标签也是筛选入口，绿点表示静音预览已就绪。切换日间或夜间主题时，播放器与主页一起更新。
-
-**再定位到具体画面。** 时间轴提供抽样图和手动标记。遇到浏览器无法直接播放的编码时，可以依赖本机 FFmpeg 准备兼容副本。
-
-**发现变动时有记录可查。** 「设置 → 变动记录」记录来源扫描、文件缺失、新增资料和设置变更。通过登记数量核对馆藏，也可以备份片目与登记预览。
-
-**用抽样概述辅助整理。** 可选的 Qwen3-VL 2B 在本机根据抽样画面生成概述和语义标签。建议和手写笔记分别保存，方便回查和修订。
-
-下载发布预览后，安装 Python 与 FFmpeg，并按 [README](../README.md) 启动。Windows 已完成源码运行验证，macOS 提供启动脚本。
+Windows 已验证；macOS 启动脚本已包含，实机验证待完成。原创源码采用 [MIT 许可证](../LICENSE)。
 
 ## 演示素材说明
 
-> 界面使用合成演示库拍摄。封面源自 AI 生成的原创手绘风插画，标签与样片为功能演示制作。
+所有公开截图来自合成演示库。手机短片使用竖屏构图，漫剧使用高对比度分镜，18+ 分组使用原创黑白提示卡。列车短片的 AI 标签由本机 Qwen3-VL 生成，其余模型标签为预填示例。
 
-- [资料库](screenshots/library.jpg)展示封面、预览就绪状态和标签。
-- [播放器](screenshots/player.jpg)展示抽样时间轴。
-- [变动记录](screenshots/activity.jpg)展示片目登记数量和变动核对。
+| 截图 | 展示对象 |
+| --- | --- |
+| [资料库](screenshots/library.jpg) | 多类片源、静音预览状态、封面标签 |
+| [播放器](screenshots/player.jpg) | 播放画面、清晰度、时间轴抽样图 |
+| [我的收藏](screenshots/favorites.jpg) | 收藏条目的独立浏览入口 |
+| [分析中心](screenshots/models.jpg) | 本机模型、任务与分析设置 |
+| [设置](screenshots/settings.jpg) | 自动整理、外观和播放状态 |
+| [日间与夜间](screenshots/themes.jpg) | 同一界面的两种主题 |
+| [变动记录](screenshots/activity.jpg) | 扫描记录与片目数量核对 |

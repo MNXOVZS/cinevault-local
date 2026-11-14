@@ -1,0 +1,67 @@
+# [INPUT]: 使用者填写运行环境与实际症状。
+# [OUTPUT]: 生成含复现步骤和期望结果的公开问题。
+# [POS]: 接收映库故障报告；诊断信息仅限脱敏内容。
+# [PROTOCOL]: Update this header on change, then check AGENTS.md
+name: 问题报告 · Bug report
+description: 报告启动、扫描、播放、模型或其他问题。Report something that is not working.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        此问题将公开。请用合成样片复现，删除日志中的用户名、文件名和路径。
+        请勿提交原始媒体、私人画面、账号信息、密钥或资料库备份。
+        This report is public. Use a synthetic sample and redact identifying details and secrets.
+  - type: input
+    id: app-version
+    attributes:
+      label: 映库版本 / CineVault version
+      description: 填写下载版本、提交编号或“不确定”。Use the release or commit, or write “unknown”.
+      placeholder: main / unknown
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: 操作系统 / Operating system
+      placeholder: Windows 11 24H2 / macOS 15 (Apple Silicon)
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: 浏览器和版本 / Browser and version
+      placeholder: Edge 145 / Safari 26 / unknown
+  - type: input
+    id: ffmpeg-version
+    attributes:
+      label: FFmpeg 版本 / FFmpeg version
+      description: 仅复制 `ffmpeg -version` 第一行中的版本号；未安装或不确定可以留空。
+      placeholder: 8.0.1
+  - type: textarea
+    id: steps
+    attributes:
+      label: 怎样复现 / Steps to reproduce
+      placeholder: 例如，关联合成样片所在的目录 → 打开视频 → 拖动进度条。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际发生了什么 / What happened?
+      placeholder: 例如，播放画面停在第一帧。每次尝试都能复现。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你希望发生什么 / What did you expect?
+      placeholder: 例如，松开进度条后，从新位置继续播放。
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 脱敏日志或媒体格式 / Redacted logs or media format
+      description: 只贴与问题有关的几行。播放问题可注明容器与编码，不必附上原片。
+      placeholder: "示例：AVI / Xvid / MP3；在合成样片中有同样问题。"

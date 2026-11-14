@@ -1,0 +1,5 @@
+# [INPUT]: GitHub 问题入口读取此配置。
+# [OUTPUT]: 普通贡献者从两种表单中选择；维护者仍可提交空白问题。
+# [POS]: 统一新问题的提交路径。
+# [PROTOCOL]: Update this header on change, then check AGENTS.md
+blank_issues_enabled: false

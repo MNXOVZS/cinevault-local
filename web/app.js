@@ -66,7 +66,7 @@ let modelTag='',modelFacets=[],modelFacetRevision,modelFacetBusy=false,lastModel
 let pendingImportFiles=[];
 const renderedClassification=new WeakMap();
 let contentScope='all',selectedSearchAsset=null,pendingExternal=null,dialogMediaId=null,pendingRelink=null,pendingDescribe=null;
-const scopeNames={all:'统一浏览',adult:'成人内容',personal:'个人资料',review:'待确认'};
+const scopeNames={all:'统一浏览',adult:'18+ 视频',personal:'个人资料',review:'待确认'};
 let kind='all',pageOffset=0,pageTotal=0,listLoading=false,listError='',listSequence=0,detailSequence=0,searchTimer=null,importDraft=null,listRenderSignature='',timelinePanelSignature='',isSeekingTimeline=false,settingsTab='general',analysisState=null,analysisLoading=false,libraryStructureSignature="";
 const PAGE_SIZE=60;
 let query='',filter='all',sort='newest',view=localStorage.getItem('cinevault-view')||'grid',tag='',connected=false,renderKey='',currentId=null,currentTab='overview',pollBusy=false,authRequired=false,lastPositionSave=0,uploadBusy=false,dragCount=0;
@@ -108,7 +108,7 @@ function mediaScope(v){return ['adult','personal','review'].includes(v?.content_
 function mediaTitle(v){return v?.title||v?.filename||'未命名资料';}
 function scopeBadge(v){const scope=mediaScope(v);return `<span class="scope-badge scope-${scope}">${scopeNames[scope]}${v.scope_lock?' · 手动确认':''}</span>`;}
 function scopeControlsMarkup(){
- const options=[['all','不限分组'],['adult','成人内容'],['personal','个人资料']];
+ const options=[['all','不限分组'],['adult',scopeNames.adult],['personal',scopeNames.personal]];
  return `<div class="scope-controls"><label class="scope-select-label"><span>分组</span><select id="content-scope" aria-label="手动分组">${options.map(([value,label])=>`<option value="${value}" ${contentScope===value?'selected':''}>${label}</option>`).join('')}</select></label></div>`;
 }
 async function loadModelFacets(){
