@@ -1,6 +1,9 @@
-# 映库 · CineVault Local v1.8.0-preview.2
+# 映库 · CineVault Local v1.8.1-preview
 
-本次更新了中英文介绍和合成样片截图，并新增 Bug 与功能建议表单。可选视觉概述现在还可标记画面中清晰可见的普通动作。
+本次提供产品介绍页、免安装在线演示和 Windows x64 便携试用包。桌面版可用 Windows 文件夹选择器关联原有目录，确认范围后按原位方式扫描。
+
+- [项目介绍](https://mnxovzs.github.io/cinevault-local/) · [免安装在线体验](https://mnxovzs.github.io/cinevault-local/demo/)
+- [Windows x64 便携试用包](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip)
 
 ## 这个版本能做什么
 
@@ -12,8 +15,9 @@
 
 ## 公开范围
 
-- **平台**：源码运行已经过 Windows 验证。macOS 提供启动脚本，实机验证待完成。[运行步骤](../README.md)
+- **平台**：Windows x64 试用包包含 Python 和非成人样片。解压后双击 `Start-Trial.cmd`，点「体验样片」可离线播放。macOS 提供源码版启动脚本，实机验证待完成。[运行步骤](../README.md)
 - **播放**：来源格式是否能直放取决于浏览器和编码；需转换时，使用本机 FFmpeg 准备兼容副本。
+- **媒体工具**：试用包提供 `Setup-FFmpeg.cmd`。首次处理自己的视频时，可使用现有 FFmpeg，或确认下载校验后放入试用包目录。随包样片可直接播放。
 - **本机模型**：视觉概述运行组件与权重由可选脚本下载。公开版未附 NudeNet、ONNX 分类或语音活动检测组件。18+ 分区可手动设置，通用语义标签用于检索普通场景和动作。
 - **素材与许可**：公开截图与示例标签只用于演示。原创源码采用 [MIT 许可证](../LICENSE)，第三方下载项沿用各自的上游许可。
 

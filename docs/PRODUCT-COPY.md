@@ -12,7 +12,7 @@
 
 ## 发布标题和正文
 
-**映库 · CineVault Local 公开预览 2｜让硬盘里的视频重新好找**
+**映库 · CineVault Local 公开预览｜把硬盘里的视频变成能翻的影库**
 
 旅行视频还在手机导出文件夹，漫剧分在几块盘，收藏的老片只有难以记住的文件名。映库把它们整理在一个界面里：手机视频、短片、动画、漫剧、电影、照片，以及你有权保留的 18+ 私人收藏。
 
@@ -20,9 +20,9 @@
 
 原片留在原目录。你选择扫描哪块已挂载的盘、哪些目录，映库记录新增、缺失和离线状态。目录默认只读；换电脑后可挂载原来的硬盘并核对新位置。基础浏览、播放、打标签和变动核对都可以离线完成。影片可直放时直接播，需要转换时才生成单独的兼容副本。
 
-[从源码运行](../README.md) · [公开预览下载](https://github.com/MNXOVZS/cinevault-local/releases) · [报告 Bug 或建议](https://github.com/MNXOVZS/cinevault-local/issues/new/choose)
+[产品介绍](https://mnxovzs.github.io/cinevault-local/) · [免安装在线体验](https://mnxovzs.github.io/cinevault-local/demo/) · [Windows 便携版](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [从源码运行](../README.md) · [报告 Bug 或建议](https://github.com/MNXOVZS/cinevault-local/issues/new/choose)
 
-Windows 已验证；macOS 启动脚本已包含，实机验证待完成。原创源码采用 [MIT 许可证](../LICENSE)。
+Windows x64 试用包内含六段非成人样片。macOS 提供源码版启动脚本，实机验证待完成。原创源码采用 [MIT 许可证](../LICENSE)。
 
 ## 演示素材说明
 

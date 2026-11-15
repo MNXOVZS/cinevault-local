@@ -11,9 +11,11 @@ Python 3.11+ · SQLite · FFmpeg · TypeScript 7.0.2 · esbuild 0.28.2
 | [frontend/](frontend/AGENTS.md) | 严格 TypeScript 源码与构建 |
 | [ai/](ai/AGENTS.md) | 可选本机视觉组件的准备入口 |
 | [docs/](docs/AGENTS.md) | 发布说明、产品文案与演示截图 |
-| [.github/](.github/AGENTS.md) | GitHub 问题反馈与功能建议表单 |
+| [site/](site/AGENTS.md) | 产品介绍与合成样片在线演示 |
+| [windows_trial/](windows_trial/AGENTS.md) | Windows 便携包构建、入口与媒体工具准备 |
+| [.github/](.github/AGENTS.md) | GitHub 反馈表单与网站部署 |
 | `server.py` | HTTP 接口、SQLite 事务与来源调度 |
-| `launch.py` | 本机进程生命周期与浏览器入口 |
+| `launch.py` | 指定回环端口的启动、停止与浏览器入口 |
 | `package_library.py` | 按模式打包并校验文件清单 |
 | `restore_backup.py` | 备份校验与事务式恢复 |
 | `verify_package.py` | 读取包的校验清单并核对内容 |

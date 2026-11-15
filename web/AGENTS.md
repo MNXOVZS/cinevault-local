@@ -2,7 +2,7 @@
 > L2 | Parent: [../AGENTS.md](../AGENTS.md)
 
 - `index.html`：加载资料库和占位界面。
-- `app.js`：目录、来源、设置和详情交互。
+- `app.js`：目录选择、来源、样片、设置和详情交互。
 - `style.css`：主题、卡片、播放器与响应布局。
 - `experience.js`：由 `frontend` 生成的播放组件。
 - `favicon.svg`：网页标签页图标。

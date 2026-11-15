@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# [INPUT]: SQLite、FFmpeg 与 cinevault_services。
+# [INPUT]: SQLite、FFmpeg、试用样片与 cinevault_services。
 # [OUTPUT]: 片目、媒体、来源及后台任务 HTTP 接口。
 # [POS]: 本机服务入口。
 # [PROTOCOL]: Update this header on change, then check AGENTS.md
@@ -55,8 +55,9 @@ from cinevault_services.library_health import LibraryHealthService
 from cinevault_services.compatibility import CompatibilityService
 from cinevault_services.audit import CatalogueAudit
 from cinevault_services.model_tags import install_model_tag_index
+from cinevault_services import desktop_picker, trial_samples
 
-VERSION = "1.8.0"
+VERSION = "1.8.1"
 CONTENT_SCOPES = {'adult','personal','review'}
 VIDEO_EXTENSIONS = {'.mp4','.m4v','.mkv','.mov','.avi','.webm','.wmv','.mpg','.mpeg','.ts','.mts','.m2ts','.flv','.vob','.ogv','.3gp','.3g2','.asf','.divx','.mxf','.rm','.rmvb','.f4v','.m2v','.mpe','.mpv','.qt','.y4m'}
 IMAGE_EXTENSIONS = {'.jpg','.jpeg','.jfif','.png','.webp','.gif','.bmp','.tif','.tiff','.heic','.heif','.avif'}
@@ -770,6 +771,8 @@ class Library:
             'system': {'app':'cinevault','version':VERSION,'python_version':sys.version.split()[0],'sqlite_version':sqlite3.sqlite_version,
                        'ffmpeg':bool(self.ffmpeg),'ffprobe':bool(self.ffprobe),
                        'data_dir': str(self.root), 'port':self.port, 'lan':self.lan, 'lan_enabled':self.lan,
+                       'folder_picker':local and desktop_picker.AVAILABLE,
+                       'trial_samples':local and bool(trial_samples.present(APP,plain_descendant)),
                        'classifier':self.classifier_status(),'external_player':self.playback.external_status()},
             'backups': self.backups()
         }
@@ -2069,6 +2072,26 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         if self.command!='HEAD': self.wfile.write(data)
 
+    def choose_source_folder(self,body):
+        host = urllib.parse.urlsplit('//'+self.headers.get('Host',''))
+        origin = self.headers.get('Origin','')
+        if (not self.local or host.hostname not in ('localhost','127.0.0.1','::1')
+            or origin != 'http://'+host.netloc):
+            raise ApiError(403,'请从映库所在 Windows 电脑的本机界面选择文件夹。')
+        if body:
+            raise ApiError(400,'此接口不接收目录或命令参数。')
+        try:
+            selected = desktop_picker.choose_folder(self.lib.stop)
+        except NotImplementedError as exc:
+            raise ApiError(501,str(exc)) from None
+        except BlockingIOError as exc:
+            raise ApiError(409,str(exc)) from None
+        except TimeoutError as exc:
+            raise ApiError(408,str(exc)) from None
+        except (OSError,ValueError):
+            raise ApiError(503,'系统文件夹选择器无法打开，请手动输入目录路径。') from None
+        return {'path':str(self.lib.source_path(selected)) if selected else None}
+
     def body(self):
         try: length = int(self.headers.get('Content-Length','0'))
         except ValueError: raise ApiError(400,'请求长度无效。')
@@ -2171,6 +2194,14 @@ class Handler(BaseHTTPRequestHandler):
         if method=='GET':
             query=urllib.parse.parse_qs(parsed.query)
             if path=='/api/state': return self.response(200,self.lib.state(local=self.local,compact=query.get('compact',['0'])[0]=='1'))
+            if path=='/api/trial-samples':
+                if not self.local: raise ApiError(403,'仅在映库所在电脑查看内置样片。')
+                return self.response(200,{'films':trial_samples.present(APP,plain_descendant)})
+            if len(parts)==2 and parts[0]=='trial-media' and parts[1].endswith('.mp4'):
+                if not self.local: raise ApiError(403,'仅在映库所在电脑播放内置样片。')
+                media=trial_samples.path_for_film(APP,parts[1][:-4],plain_descendant)
+                if media is None: raise ApiError(404,'内置样片不存在。')
+                return self.file(media)
             if path=='/api/videos': return self.response(200,self.lib.list_videos(query))
             if path=='/api/model-tags': return self.response(200,self.lib.model_tag_facets(query))
             if path=='/api/audit':
@@ -2253,6 +2284,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/cache/plan': return self.response(200,self.lib.cache.plan(body))
             if path=='/api/cache/cleanup': return self.response(200,self.lib.cache.cleanup(body))
         if method=='POST':
+            if path=='/api/sources/pick-folder':
+                return self.response(200,self.choose_source_folder(body))
             if path=='/api/login':
                 remote=self.client_address[0]
                 count,stamp=self.lib.login_attempts.get(remote,(0,0))

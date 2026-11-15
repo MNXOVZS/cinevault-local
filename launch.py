@@ -1,4 +1,4 @@
-# [INPUT]: 系统 Python、回环 HTTP 和 server.py。
+# [INPUT]: 系统或便携 Python、指定回环端口和 server.py。
 # [OUTPUT]: 启动、复用或停止本机服务。
 # [POS]: 平台启动命令共用的入口。
 # [PROTOCOL]: Update this header on change, then check AGENTS.md
@@ -14,8 +14,7 @@ import urllib.request
 import webbrowser
 
 ROOT = Path(__file__).resolve().parent
-PORT = 8765
-URL = f'http://127.0.0.1:{PORT}'
+DEFAULT_PORT = 8765
 HTTP = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 def notice(message):
@@ -25,9 +24,9 @@ def notice(message):
         import ctypes
         ctypes.windll.user32.MessageBoxW(0, message, '映库 CineVault', 0)
 
-def state():
+def state(url):
     try:
-        with HTTP.open(URL + '/api/state?compact=1', timeout=2) as response:
+        with HTTP.open(url + '/api/state?compact=1', timeout=2) as response:
             value = json.load(response)
             return value if isinstance(value, dict) else None
     except Exception:
@@ -69,19 +68,19 @@ def start_server(command, log):
         return subprocess.Popen(command, creationflags=flags, **kwargs)
 
 
-def open_library():
+def open_library(url):
     try:
-        if webbrowser.open(URL):
+        if webbrowser.open(url):
             return
     except (OSError, webbrowser.Error):
         pass
-    notice(f'映库已启动。请在浏览器地址栏输入 {URL}。')
+    notice(f'映库已启动。请在浏览器地址栏输入 {url}。')
 
 
-def service_matches_library(response):
+def service_matches_library(response, port):
     system = response.get('system')
     if not isinstance(system, dict) or system.get('app') != 'cinevault':
-        notice(f'端口 {PORT} 已被其他程序使用，请先释放此端口。')
+        notice(f'端口 {port} 已被其他程序使用，请先释放此端口。')
         return False
     active_dir = system.get('data_dir')
     if not isinstance(active_dir, str) or not active_dir or Path(active_dir).resolve() != (ROOT/'data').resolve():
@@ -95,15 +94,19 @@ def main(argv=None):
     parser.add_argument('--lan', action='store_true')
     parser.add_argument('--stop', action='store_true')
     parser.add_argument('--no-open', action='store_true')
+    parser.add_argument('--port', type=int, default=DEFAULT_PORT)
     args = parser.parse_args(argv)
-    current = state()
-    if current is not None and not service_matches_library(current):
+    if not 1 <= args.port <= 65535:
+        parser.error('--port 应为 1 至 65535')
+    url = f'http://127.0.0.1:{args.port}'
+    current = state(url)
+    if current is not None and not service_matches_library(current, args.port):
         return 1
     if args.stop:
         if current is None:
-            notice('映库未在默认端口运行。')
+            notice(f'映库未在端口 {args.port} 运行。')
             return 0
-        request = urllib.request.Request(URL + '/api/shutdown', data=b'{}', headers={'Content-Type':'application/json', 'Origin': URL}, method='POST')
+        request = urllib.request.Request(url + '/api/shutdown', data=b'{}', headers={'Content-Type':'application/json', 'Origin': url}, method='POST')
         try:
             HTTP.open(request, timeout=4).close()
             for _ in range(120):
@@ -120,10 +123,10 @@ def main(argv=None):
         if args.lan and not current.get('system', {}).get('lan'):
             notice('请先双击“停止映库”，再双击“手机访问”以启用局域网。')
         if not args.no_open:
-            open_library()
+            open_library(url)
         return 0
     logs = ROOT/'data'/'logs'
-    command = [sys.executable, '-X', 'utf8', str(ROOT/'server.py'), '--port', str(PORT)]
+    command = [sys.executable, '-X', 'utf8', str(ROOT/'server.py'), '--port', str(args.port)]
     if args.lan:
         command.append('--lan')
     try:
@@ -139,17 +142,17 @@ def main(argv=None):
         # PID logging is diagnostic. Readiness is confirmed through HTTP.
         pass
     for _ in range(150):
-        running = state()
+        running = state(url)
         if running is not None:
-            if not service_matches_library(running):
+            if not service_matches_library(running, args.port):
                 return 1
             if not args.no_open:
-                open_library()
+                open_library(url)
             return 0
         if process.poll() is not None:
             break
         time.sleep(.2)
-    notice('映库启动失败。请查看 data/logs/server.log 或双击“运行诊断”。')
+    notice('映库启动失败。请查看 data/logs/server.log。')
     return 1
 
 if __name__ == '__main__':

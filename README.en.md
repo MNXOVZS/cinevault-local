@@ -1,10 +1,12 @@
 # 映库 · CineVault Local
 
-[简体中文](README.md) · [Download the public preview](https://github.com/MNXOVZS/cinevault-local/releases) · [Report a bug or request a feature](https://github.com/MNXOVZS/cinevault-local/issues) · [MIT license](LICENSE)
+[**Try online**](https://mnxovzs.github.io/cinevault-local/demo/?lang=en) · [**Download for Windows**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [Product site](https://mnxovzs.github.io/cinevault-local/?lang=en) · [简体中文](README.md)
 
-**One private library for the videos you keep on your phone, computer, and external drives.**
+**Find the clip you remember on an external drive, without moving the original.**
 
-Bring together exported iPhone and Android videos, short clips, anime and comic adaptations, old films, photos, and 18+ media you have the right to keep. Open CineVault Local to browse covers that come to life, filter by tags, and jump to the frame you remember. Your files stay where you put them.
+CineVault Local indexes folders you choose. Videos preview as you scroll, and sampled timeline frames help you jump to a moment. Keep phone exports, anime, comic adaptations, films, photos and **18+ videos** in one collection with separate groups when you want them.
+
+The online demo has public, non-adult sample videos. Search the samples, try a filter, play a clip, or scrub the timeline. The desktop version is where you link your own folders.
 
 ![CineVault Local library with synthetic demos of phone videos, animation, short clips, and an 18+ section](docs/screenshots/library.jpg)
 
@@ -32,13 +34,19 @@ The public gallery uses synthetic demo material. The black-and-white 18+ slate s
 
 [See the activity log and item counts](docs/screenshots/activity.jpg)
 
-## Run on Windows or macOS
+## Try the portable Windows edition
 
-1. Install **Python 3.11+** with SQLite and **FFmpeg** with `libx264`. Put both `ffmpeg` and `ffprobe` on your `PATH`. [Python downloads](https://www.python.org/downloads/) · [FFmpeg downloads](https://ffmpeg.org/download.html)
-2. Download and extract the source. On Windows, open `Start-Windows.cmd` (or run `python -X utf8 launch.py`). On macOS, run `bash Start-Mac.command` from the project directory.
-3. Open [the local app](http://127.0.0.1:8765) and choose **关联目录** to link a folder on your computer or a mounted drive. The current interface is in Simplified Chinese. The core app does not require an account or internet access.
+1. [Download the Windows x64 ZIP](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) and extract it into a writable folder.
+2. Double-click `Start-Trial.cmd`. In the local browser UI, choose **体验样片** to play the bundled non-adult sample clips offline.
+3. Select **关联目录** and open the Windows folder picker to link an existing folder. Confirm the scan scope before indexing. The desktop interface is in Simplified Chinese.
 
-The public preview includes launchers for both platforms. Startup, indexing, and playback were tested on Windows; testing on macOS hardware is pending. MOV, MKV, and AVI are among the containers the library can index. Whether playback works depends on the file's codecs and your FFmpeg build.
+The trial includes Python. Covers, previews and conversion for your own videos require FFmpeg. If needed, run the bundled `Setup-FFmpeg.cmd` and confirm the upstream download into the trial folder. See the [release notes](https://github.com/MNXOVZS/cinevault-local/releases/tag/v1.8.1-preview).
+
+## macOS and source setup
+
+Source setup requires **Python 3.11+** with SQLite, plus **FFmpeg** with `libx264` and `ffprobe`. Extract the source and open `Start-Windows.cmd` on Windows. On macOS, run `bash Start-Mac.command` from the project folder. Testing on macOS hardware is pending. [Release and source code](https://github.com/MNXOVZS/cinevault-local/releases/tag/v1.8.1-preview) · [Python](https://www.python.org/downloads/) · [FFmpeg](https://ffmpeg.org/download.html)
+
+MOV, MKV, and AVI are among the containers the library can index. Playback and conversion depend on the codecs and FFmpeg build.
 
 ## External drives, migration, and offline use
 

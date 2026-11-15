@@ -1,10 +1,12 @@
 # 映库 · CineVault Local
 
-[English](README.en.md) · [下载公开预览](https://github.com/MNXOVZS/cinevault-local/releases) · [报告问题 / 提议功能](https://github.com/MNXOVZS/cinevault-local/issues) · [MIT 许可证](LICENSE)
+[**在线体验**](https://mnxovzs.github.io/cinevault-local/demo/) · [**下载 Windows 版**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [产品介绍](https://mnxovzs.github.io/cinevault-local/) · [English](README.en.md)
 
-**从手机相册到外接硬盘，给所有本地视频一个好找、好看的地方。**
+**不用搬原片，把外接硬盘里叫不出名字的视频变成一眼能找的影库。**
 
-映库是一套为个人收藏打造的离线影音资料库。把从 iPhone 或 Android 导出的手机视频、短片、动画、漫剧、老电影、照片，以及有权保存的 18+ 私人视频，整理进同一套资料库。打开就能浏览封面、自动播放静音卡片预览，按标签找到想看的片段。文件仍留在你指定的目录。
+选一个目录，映库会在本机为视频建索引。卡片滚到眼前就能静音预览，点开后可以拖时间轴找画面。从手机导出的视频、动画、漫剧、电影、照片和 **18+ 视频**都可以一起归档，也可以分开浏览。
+
+在线演示使用公开的非成人样片。点开就能搜、筛选、看预览和拖时间轴，无需安装或注册。要关联自己的硬盘，请使用本机版本。
 
 ![映库首页：手机视频、动画、短片及 18+ 分类的非露骨合成演示素材](docs/screenshots/library.jpg)
 
@@ -32,13 +34,19 @@
 
 [查看变动记录与数量核对](docs/screenshots/activity.jpg)
 
-## 在 Windows 或 Mac 上运行
+## Windows 便携试用
 
-1. 安装带 SQLite 的 **Python 3.11+** 和带 `libx264` 的 **FFmpeg**。确认 `ffmpeg` 和 `ffprobe` 在系统的 `PATH` 上。[Python 下载](https://www.python.org/downloads/) · [FFmpeg 下载](https://ffmpeg.org/download.html)
-2. 下载并解压源码。在 Windows 双击 `Start-Windows.cmd`（也可运行 `python -X utf8 launch.py`）；在 macOS 终端进入项目目录，运行 `bash Start-Mac.command`。
-3. 打开 [本机映库](http://127.0.0.1:8765)，点「关联目录」，选择本机文件夹或已挂载的外接盘目录。打开的网页由你自己的电脑提供。基础功能不需要账号或网络。
+1. [下载 Windows x64 试用包](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip)，完整解压到一个你有写入权限的文件夹。
+2. 双击 `Start-Trial.cmd`。在本机浏览器中点「体验样片」，无需联网即可播放随包的非成人短片。
+3. 整理自己的资料时，点「关联目录」和「选择文件夹」，在系统窗口选择本机或外接硬盘的目录。确认扫描范围后，映库会原位建立索引。
 
-公开版提供两个平台的启动脚本；Windows 已验证启动、索引和播放，macOS 实机验证待完成。原片编解码器与 FFmpeg 构建决定实际格式兼容性；MOV、MKV、AVI 等是可扫描的格式，无法承诺每一种编码都能播放。
+自己文件的封面、静音预览与兼容转换需要 FFmpeg。如果电脑尚未安装，可双击包内的 `Setup-FFmpeg.cmd`，确认后从上游下载并安装到试用目录。试用包自带 Python。详情见[发行说明](https://github.com/MNXOVZS/cinevault-local/releases/tag/v1.8.1-preview)。
+
+## macOS 与源码运行
+
+源码版需要带 SQLite 的 **Python 3.11+**，以及带 `libx264` 的 **FFmpeg** 和 `ffprobe`。下载并解压源码，在 Windows 双击 `Start-Windows.cmd`。在 Mac 的终端中进入目录，运行 `bash Start-Mac.command`。Mac 实机验证待完成。[源码与发行说明](https://github.com/MNXOVZS/cinevault-local/releases/tag/v1.8.1-preview) · [Python](https://www.python.org/downloads/) · [FFmpeg](https://ffmpeg.org/download.html)
+
+MOV、MKV、AVI 都可进入扫描范围。能否直放或生成兼容副本取决于视频编码和本机 FFmpeg。
 
 ## 外接硬盘、迁移与离线使用
 

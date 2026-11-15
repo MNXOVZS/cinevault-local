@@ -1,0 +1,11 @@
+<!--
+  [INPUT]: 页首品牌色。
+  [OUTPUT]: 提供项目链接与浏览器标签的标记。
+  [POS]: 介绍页与演示页共用静态图形。
+  [PROTOCOL]: Update this header on change, then check AGENTS.md
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <rect width="36" height="36" rx="9" fill="#edbb73"/>
+  <path d="M9 11.5h18v13H9zM12 11.5v13m12-13v13" fill="none" stroke="#211810" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="m16 14.7 5.2 3.3-5.2 3.3z" fill="#211810"/>
+</svg>

@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  [INPUT]: 演示样片、预览短片、时间轴缩略图与双语界面。
+  [OUTPUT]: 提供无安装的浏览、搜索、播放与跳转。
+  [POS]: 公开演示不连接桌面资料库。
+  [PROTOCOL]: Update this header on change, then check AGENTS.md
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="在线体验映库的短片预览、搜索、播放器和时间轴。演示只使用六段公开合成样片。">
+  <meta name="theme-color" content="#101411">
+  <title>演示片库｜映库 · CineVault Local</title>
+  <link rel="icon" href="../mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="./browser-demo.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-en="Skip to content">跳到正文</a>
+  <header class="site-header">
+    <div class="shell topbar">
+      <a class="brand" href="../" aria-label="映库 CineVault Local">
+        <img src="../mark.svg" alt="" width="36" height="36">
+        <span><strong>映库</strong><small>CineVault Local</small></span>
+      </a>
+      <nav aria-label="主导航" data-en-label="Main navigation">
+        <a href="../" data-en="Back to overview">返回介绍</a>
+        <button type="button" class="language" data-language aria-label="Switch to English">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell demo-main">
+    <header class="demo-heading">
+      <p class="eyebrow" data-en="WEB DEMO · NO INSTALLATION">免安装在线体验</p>
+      <h1 data-en="Sample library">演示片库</h1>
+      <p data-en="Browse six synthetic clips, search by tag, or open a clip and scrub to a moment.">浏览六段合成样片。可以按标签搜索，点开播放，再拖时间轴找画面。</p>
+    </header>
+    <div class="demo-controls">
+      <div class="search-row">
+        <div class="search-box">
+          <input id="clip-search" type="search" autocomplete="off" placeholder="搜索标题或标签，例如：列车" aria-label="搜索样片标题或标签" data-en-label="Search sample titles or tags" data-en-placeholder="Search clips or tags, e.g. train">
+        </div>
+        <p class="count" id="clip-count" aria-live="polite"></p>
+      </div>
+      <div class="filters" role="group" aria-label="样片分类" data-en-label="Sample categories">
+        <button class="filter" type="button" data-category="all" aria-pressed="true" data-en="All clips">全部</button>
+        <button class="filter" type="button" data-category="landscape" aria-pressed="false" data-en="Scenery">风景</button>
+        <button class="filter" type="button" data-category="phone" aria-pressed="false" data-en="Phone video">手机视频</button>
+        <button class="filter" type="button" data-category="comic" aria-pressed="false" data-en="Motion comic">漫剧</button>
+      </div>
+    </div>
+    <div class="demo-grid" id="clip-grid"></div>
+    <p class="empty" id="clip-empty" data-en="No matching clips. Try a category or a different search." hidden>没有匹配的样片。试试另一个分类或关键词。</p>
+    <noscript><p class="empty">请启用 JavaScript 以播放和检索样片。 Enable JavaScript to play and search the samples.</p></noscript>
+    <p class="muted-note" data-en="This demo uses only its sample files and cannot access your computer’s library. The Windows app can scan your own folders.">本页只读取演示样片。要关联自己的文件夹，请使用 Windows 试用版。</p>
+  </main>
+
+  <dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+    <div class="viewer-header">
+      <h2 id="viewer-title"></h2>
+      <form method="dialog">
+        <button class="viewer-close" type="submit" aria-label="关闭播放器" data-en-label="Close player">×</button>
+      </form>
+    </div>
+    <video id="viewer-video" controls playsinline preload="metadata" aria-label="样片播放器" data-en-label="Sample player"></video>
+    <div class="player-details">
+      <p class="player-metadata" id="viewer-specs"></p>
+      <p class="player-metadata" id="viewer-error" role="status" data-en="This clip could not be played. Please reload the page and try again." hidden>这段样片未能播放。请刷新后再试。</p>
+      <div class="timeline">
+        <label for="viewer-timeline" data-en="Frame preview timeline">画面预览时间轴</label>
+        <div class="thumb-hint" id="viewer-thumb" aria-hidden="true" hidden><div></div><span></span></div>
+        <input type="range" id="viewer-timeline" min="0" max="8" step=".05" value="0">
+        <div class="timeline-state">
+          <span id="viewer-time">0:00</span>
+          <span data-en="Hover or drag to preview · Click to jump">悬停或拖动预览 · 点击跳转</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>映库 · CineVault Local</span>
+      <nav aria-label="项目链接" data-en-label="Project links">
+        <a href="https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip" data-en="Download for Windows">下载 Windows 版</a>
+        <a href="https://github.com/MNXOVZS/cinevault-local">GitHub ↗</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

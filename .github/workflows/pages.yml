@@ -1,0 +1,50 @@
+# [INPUT]: 主分支已提交的站点文件与产品页截图。
+# [OUTPUT]: GitHub Pages 产品页和合成样片演示。
+# [POS]: 将公开站点部署与桌面源码和试用包分离。
+# [PROTOCOL]: Update this header on change, then check AGENTS.md
+name: Deploy product site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'docs/screenshots/*.jpg'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cinevault-public-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Prepare public site
+        run: |
+          cp -R site pages-output
+          mkdir -p pages-output/gallery
+          cp docs/screenshots/{player,activity,models,settings}.jpg pages-output/gallery/
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: pages-output
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+        id: deployment
