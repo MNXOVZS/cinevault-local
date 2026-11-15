@@ -1,166 +1,217 @@
 <!doctype html>
 <!--
-  [INPUT]: 公开合成样片封面、已审查的产品截图和 GitHub 发布。
-  [OUTPUT]: 提供产品介绍、演示入口和可查看原图的截图图集。
-  [POS]: GitHub Pages 入口。在线演示位于 demo/。
+  [INPUT]: 本站合成短片、已审核的桌面实拍及 GitHub 发布。
+  [OUTPUT]: 展示动态封面、时间轴、离线模型及本机使用方式。
+  [POS]: GitHub Pages 产品首页。互动演示位于 demo/。
   [PROTOCOL]: Update this header on change, then check AGENTS.md
 -->
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="映库 · CineVault Local 是 Windows 本地视频整理工具。关联已有文件夹，静音预览，按时间轴找画面，原片留在原处。">
-  <meta name="theme-color" content="#101411">
+  <meta name="description" content="映库让外接硬盘里的视频动起来。用静音动态封面、时间轴缩略图和可选的离线视觉模型浏览、定位和整理本地影片。">
+  <meta name="theme-color" content="#f8f7f4">
   <meta property="og:title" content="映库 · CineVault Local｜硬盘里的视频，打开就好找">
-  <meta property="og:description" content="从手机导出视频到几块外接硬盘，整理成能播放、能检索的离线片库。">
+  <meta property="og:description" content="静音动态封面、时间轴缩略图和离线 AI 标签。原片留在你的目录。">
   <meta property="og:image" content="https://mnxovzs.github.io/cinevault-local/assets/valley.webp">
   <link rel="canonical" href="https://mnxovzs.github.io/cinevault-local/">
   <title>映库 · CineVault Local｜硬盘里的视频，打开就好找</title>
   <link rel="icon" href="./mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./home.css">
   <script type="module" src="./language.js"></script>
+  <script type="module" src="./home.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-en="Skip to content">跳到正文</a>
   <header class="site-header">
-    <div class="shell topbar">
+    <div class="wrap topbar">
       <a class="brand" href="./" aria-label="映库 CineVault Local">
         <img src="./mark.svg" alt="" width="36" height="36">
         <span><strong>映库</strong><small>CineVault Local</small></span>
       </a>
       <nav aria-label="主导航" data-en-label="Main navigation">
-        <a class="nav-optional" href="#workflow" data-en="How it works">如何整理</a>
-        <a class="nav-optional" href="#details" data-en="Features">功能与边界</a>
-        <a href="https://github.com/MNXOVZS/cinevault-local">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="nav-section" href="#workflow" data-en="Playback">播放</a>
+        <a class="nav-section" href="#models" data-en="Local AI">离线模型</a>
+        <a class="nav-section" href="#details" data-en="Features">功能</a>
+        <a href="https://github.com/MNXOVZS/cinevault-local">GitHub</a>
         <button type="button" class="language" data-language aria-label="Switch to English">EN</button>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="./assets/valley.webp" width="1280" height="720" alt="" fetchpriority="high">
-      <div class="hero-shade"></div>
-      <div class="shell hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow" data-en="An offline media library for Windows">Windows 离线影音资料库</p>
-          <h1 id="hero-title"><span data-en="Your hard drive.">硬盘里的视频，</span><span data-en="One playable library.">打开就好找。</span></h1>
-          <p class="hero-summary" data-en="Turn phone clips, old films, and folders across your external drives into a library you can preview and search. Your originals stay right where they are.">手机导出、漫剧、老片和几块外接盘里的收藏，可以在同一个界面里预览和检索。原片留在原来的硬盘。</p>
-          <div class="actions">
-            <a class="button primary" href="./demo/index.html"><span aria-hidden="true">▶</span><span data-en="Open the interactive demo">打开在线演示</span></a>
-            <a class="button outline" href="https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip"><span aria-hidden="true">↓</span><span data-en="Download for Windows">下载 Windows 版</span></a>
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker" data-en="Your offline video library">本地影音资料库</p>
+        <h1 id="hero-title">
+          <span data-en="Rediscover what’s">硬盘里的视频，</span>
+          <span data-en="on your drives.">打开就好找。</span>
+        </h1>
+        <p class="lead" data-en="Link the folders you already use. Browse moving covers, scrub to a frame, and filter by tags from optional local AI. Your originals stay in place.">关联已有文件夹，扫一眼动态封面，拖时间轴找到记得的画面。也可用离线模型给视频打标签。原片留在原来的目录。</p>
+        <div class="actions">
+          <a class="button primary" href="./demo/index.html" data-en="Try the interactive demo">打开在线演示</a>
+          <a class="button secondary" href="https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip" data-en="Download for Windows">下载 Windows 版</a>
+        </div>
+        <p class="subtle" data-en="Windows x64 portable preview · MIT license">Windows x64 便携预览版 · MIT 开源</p>
+      </div>
+
+      <figure class="motion-board" aria-labelledby="motion-title">
+        <div class="board-header">
+          <h2 id="motion-title" data-en="All media">全部资料</h2>
+          <button type="button" class="motion-toggle" id="motion-toggle" hidden>暂停预览</button>
+        </div>
+        <div class="motion-grid">
+          <div class="motion-card">
+            <video muted playsinline loop preload="none" poster="./assets/valley.webp" data-preview="./assets/valley.mp4" width="1280" height="720" aria-hidden="true"></video>
+            <span data-en="Valley Train">山谷列车</span>
           </div>
-          <p class="hero-note" data-en="Windows x64 portable preview · open-source code under MIT">Windows x64 便携预览版 · 原创代码采用 MIT 许可</p>
+          <div class="motion-card">
+            <video muted playsinline loop preload="none" poster="./assets/bookshop.webp" data-preview="./assets/bookshop.mp4" width="1280" height="720" aria-hidden="true"></video>
+            <span data-en="Bookshop in the Rain">雨巷书店</span>
+          </div>
+          <div class="motion-card">
+            <video muted playsinline loop preload="none" poster="./assets/phone.webp" data-preview="./assets/phone.mp4" width="720" height="1280" aria-hidden="true"></video>
+            <span data-en="Phone Diary · Vertical">手机日记 · 竖屏</span>
+          </div>
+          <div class="motion-card">
+            <video muted playsinline loop preload="none" poster="./assets/comic.webp" data-preview="./assets/comic.mp4" width="1280" height="720" aria-hidden="true"></video>
+            <span data-en="Motion Comic">漫剧 · 分镜试片</span>
+          </div>
         </div>
-        <p class="hero-credit"><span class="status-dot"></span><span data-en="VALLEY TRAIN · DEMO FOOTAGE">山谷列车 · 演示样片</span></p>
+        <figcaption data-en="Muted demo clips. In the desktop library, preview-ready video cards can play on screen without hovering.">静音样片。桌面版「全部资料」里，预览已就绪的视频卡片进入视野即可自动播放。</figcaption>
+      </figure>
+    </section>
+
+    <section class="band" id="workflow" aria-labelledby="playback-title">
+      <div class="wrap feature feature-playback">
+        <div class="feature-copy">
+          <p class="kicker" data-en="Preview and playback">浏览与播放</p>
+          <h2 id="playback-title" data-en="Go straight to the frame you remember.">扫一眼封面，拖一下就到。</h2>
+          <ul class="feature-list">
+            <li>
+              <strong data-en="Moving covers across the library">全库动态封面</strong>
+              <p data-en="Preview-ready videos can play short muted clips as you scroll. Out-of-view cards pause. Playback depends on your browser and motion settings.">开启自动预览后，已就绪的视频卡片在视野内静音播放，无需悬停。离屏暂停，播放也受浏览器和减少动态效果设置影响。</p>
+            </li>
+            <li>
+              <strong data-en="Timeline thumbnails">时间轴缩略图</strong>
+              <p data-en="Hover or drag to see sampled frames. Select a moment to jump to it. Keep your own markers, and find candidate scene cuts or audio-level changes.">悬停或拖动时间轴看抽样帧，点一下跳到对应位置。支持手动标记，也可标出候选画面切换与音量变化。</p>
+            </li>
+            <li>
+              <strong data-en="Preview and scan status">预览进度与异常</strong>
+              <p data-en="Background tasks prepare covers and preview clips. The library health view shows progress and errors by source.">封面和静音短片在后台准备。打开资料库体检，可按来源看进度和失败原因。</p>
+            </li>
+          </ul>
+          <a class="text-link" href="./demo/index.html" data-en="Try the timeline">在线试用时间轴 →</a>
+        </div>
+        <figure class="product-shot">
+          <a href="./assets/player-detail.png" data-en-label="Open the full-size player screenshot" aria-label="打开播放器原图"><img src="./assets/player-detail.png" alt="播放器在第四秒显示时间轴缩略图" data-en-alt="Desktop player showing a timeline thumbnail near four seconds" width="2560" height="1440" loading="lazy" decoding="async"></a>
+          <figcaption data-en="Desktop player · select for the full image">桌面播放器 · 点击看原图</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="shell section" id="workflow" aria-labelledby="workflow-title">
-      <div class="section-head">
+    <section class="wrap section feature-model" id="models" aria-labelledby="model-title">
+      <div class="model-columns">
         <div>
-          <p class="eyebrow" data-en="From folder to player">从目录到播放器</p>
-          <h2 id="workflow-title" data-en="Find the shot you remember.">找回记得的那一帧。</h2>
+          <p class="kicker" data-en="Optional local model">可选离线模型</p>
+          <h2 id="model-title" data-en="Give your clips searchable descriptions.">让画面自己提供线索。</h2>
+          <p class="feature-intro" data-en="After setup, Qwen3-VL 2B samples still frames on your computer and suggests Chinese descriptions and searchable tags for scenes and visible everyday actions. Manual titles, descriptions, and tags stay separate.">安装 Qwen3-VL 2B 后，模型从抽样画面生成中文概述，并给场景和清晰可见的普通动作建议标签。可按模型标签筛选。人工标题、简介和标签独立保留。</p>
         </div>
-        <a class="text-link" href="./demo/index.html"><span data-en="Try it with six sample clips">用六段样片试一遍</span> <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="workflow">
-        <article>
-          <span class="feature-icon" aria-hidden="true">↳</span>
-          <h3 data-en="Link a folder">关联现有目录</h3>
-          <p data-en="Choose a folder or a mounted external drive. CineVault scans its subfolders and keeps the source files in place.">选择本机文件夹或已挂载的外接硬盘。映库扫描子目录，默认只读关联。</p>
-        </article>
-        <article>
-          <span class="feature-icon" aria-hidden="true">▷</span>
-          <h3 data-en="Browse moving covers">一眼看到动起来的封面</h3>
-          <p data-en="Ready cards play short, muted previews while in view. They pause off-screen and reuse cached clips.">预览就绪的卡片进入视野后静音播放，离屏暂停，浏览时复用缓存。</p>
-        </article>
-        <article>
-          <span class="feature-icon" aria-hidden="true">⌁</span>
-          <h3 data-en="Scrub to a moment">拖时间轴找画面</h3>
-          <p data-en="Use sampled frames and markers to jump to the right moment. See resolution and codec details in the player.">用抽样画面和标记跳转，打开播放器就能看到分辨率和编码信息。</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="details-band" id="details" aria-labelledby="details-title">
-      <div class="shell section details-inner">
         <div>
-          <p class="eyebrow" data-en="Keep your collection yours">原片与目录</p>
-          <h2 id="details-title" data-en="The library moves. Your files stay in place.">换电脑，仍然用原来的硬盘。</h2>
-          <p class="intro" data-en="Link a mounted folder with read-only defaults. Check missing items or an offline drive in the activity log. If the mount path changes, reconnect and verify the source.">默认只读关联。找不到文件或硬盘离线时，变动记录会显示状态。换电脑或盘符改变后，可在媒体来源里选新位置并核对。</p>
+          <ul class="feature-list compact">
+            <li data-en="Enable automatic analysis for new imports, or queue a local batch for items already in the library.">可为新资料开启自动分析，也能对已有资料提交本机批处理。</li>
+            <li data-en="Use the built-in llama.cpp setup, or configure Ollama or an OpenAI-compatible vision endpoint.">可使用内置的 llama.cpp 运行方案，也可配置 Ollama 或 OpenAI 兼容视觉接口。</li>
+            <li data-en="A remote provider requires confirmation of the frames and destination before sending.">向远程模型发送画面前，需确认具体截图和目标地址。</li>
+          </ul>
+          <div class="model-example">
+            <p data-en="Valley Train · tags from a local test">山谷列车 · 本机分析生成的标签</p>
+            <ul aria-label="模型标签示例" data-en-label="Example model tags">
+              <li data-en="Train">火车</li>
+              <li data-en="Bridge">桥梁</li>
+              <li data-en="Mountain scenery">山景</li>
+            </ul>
+          </div>
         </div>
-        <dl class="detail-list">
-          <div><dt data-en="Phone clips, shows, and archives">手机视频、漫剧与老片</dt><dd data-en="Organize video and photos exported to disk. Direct playback depends on codec support; FFmpeg can prepare a compatible copy when necessary.">整理已导出到硬盘的视频和照片。能直放时直接播放，必要时由 FFmpeg 准备兼容副本。</dd></div>
-          <div><dt data-en="18+ videos">18+ 视频</dt><dd data-en="Group a private collection by folder or individual item and add searchable manual tags.">可以按目录或单条视频分组，用可检索的手动标签细分收藏。</dd></div>
-          <div><dt data-en="Optional offline visual model">可选本机视觉模型</dt><dd data-en="Install Qwen3-VL 2B separately for Chinese summaries and ordinary scene or action tags from sampled frames. 18+ grouping stays manual in this public preview.">可另装 Qwen3-VL 2B，从抽样画面生成中文概述、场景和普通动作标签。公开预览版的 18+ 分组由你设置。</dd></div>
-        </dl>
+      </div>
+      <figure class="product-shot">
+        <a href="./assets/model-result.png" data-en-label="Open the full-size model result screenshot" aria-label="打开模型分析原图"><img src="./assets/model-result.png" alt="Qwen3-VL 根据山谷列车的两张抽样图生成中文概述和标签" data-en-alt="Qwen3-VL generating a Chinese summary and tags from two Valley Train frames" width="2378" height="378" loading="lazy" decoding="async"></a>
+        <figcaption data-en="Local model result from two sampled frames · select for the full image">两张抽样图的本机分析结果 · 点击看原图</figcaption>
+      </figure>
+      <p class="subtle" data-en="The optional model weights are about 1.45 GiB. 18+ video groups are set manually.">可选模型权重约 1.45 GiB。18+ 视频分组由你设置。</p>
+    </section>
+
+    <section class="band" id="details" aria-labelledby="features-title">
+      <div class="wrap section">
+        <div class="section-heading">
+          <p class="kicker" data-en="Local media, from import to backup">导入、管理和迁移</p>
+          <h2 id="features-title" data-en="A practical home for your collection.">整理的不只是文件名。</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3 data-en="Link folders in place">只读关联目录</h3>
+            <p data-en="Choose an existing folder or external drive using the Windows system picker. CineVault scans subfolders, with exclusions you set, and can monitor linked folders for new media.">用 Windows 系统窗口选择现有文件夹或外接硬盘。扫描子目录，可设置排除项，也能定期检查已关联目录中的新资料。默认只读，原片留在原位。</p>
+          </article>
+          <article>
+            <h3 data-en="Filter your collection">检索、分类与收藏</h3>
+            <p data-en="Browse phone clips, animation, comic adaptations, older films and photos. Filter by tags, revisit favorites and playback history, and group 18+ videos by folder or individually.">统一浏览手机导出视频、动画、漫剧、老片和照片。支持按标签查找、收藏和继续观看。18+ 视频可按目录或单条资料手动分组。</p>
+          </article>
+          <article>
+            <h3 data-en="Check playback compatibility">查看格式和播放状态</h3>
+            <p data-en="Scan containers such as MP4, MOV, MKV and AVI. See duration, file size, dimensions and codec. FFmpeg can prepare a playback copy when needed.">可扫描 MP4、MOV、MKV、AVI 等格式。查看时长、体积、分辨率和编码。能否直放取决于编码，必要时用 FFmpeg 准备兼容副本。</p>
+          </article>
+          <article>
+            <h3 data-en="Track changes and move disks">核对变动与换盘</h3>
+            <p data-en="Check new items, missing files and offline sources. Verify and reconnect folders when drive letters or mount points change. Back up the catalogue, covers and saved previews. Back up originals separately.">查看新增、缺失文件和磁盘离线状态。换盘符或挂载位置后，可核对并重新关联。支持备份片目、封面和已登记的预览。原片需另行备份。</p>
+          </article>
+          <article>
+            <h3 data-en="Choose your viewing layout">按习惯浏览</h3>
+            <p data-en="Switch between compact and detailed cards, or light and dark themes. Open the player to see a larger video and sampled frames.">切换精简或详细卡片，按需要使用日间与夜间主题。进入播放器后可放大画面并查看附近的抽样帧。</p>
+          </article>
+          <article>
+            <h3 data-en="Keep media local">本机运行</h3>
+            <p data-en="Use the desktop library offline without an account. The public web demo plays only its six synthetic clips. The portable Windows package includes Python and samples.">桌面版无需账号，基础浏览和播放可离线使用。在线演示固定使用六段合成样片。Windows 试用包自带 Python 和可离线播放的样片。</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="shell section" id="screenshots" aria-labelledby="screenshots-title">
-      <div class="section-head">
-        <div>
-          <h2 id="screenshots-title" data-en="Desktop screenshots">桌面版截图</h2>
-          <p class="intro" data-en="Select any screenshot to open the full-size image.">点击任意截图查看原图。</p>
-        </div>
-        <a class="text-link" href="./demo/index.html" data-en="Open the interactive player">打开互动播放器</a>
-      </div>
-      <div class="screenshot-grid">
-        <a class="screenshot screenshot-feature" href="./gallery/player.jpg">
-          <img src="./gallery/player.jpg" width="1265" height="712" loading="lazy" alt="" />
-          <span data-en="Player and timeline">播放器与时间轴</span>
-        </a>
-        <a class="screenshot" href="./gallery/library.jpg">
-          <img src="./gallery/library.jpg" width="1265" height="900" loading="lazy" alt="" />
-          <span data-en="Library">资料库</span>
-        </a>
-        <a class="screenshot" href="./gallery/favorites.jpg">
-          <img src="./gallery/favorites.jpg" width="1280" height="720" loading="lazy" alt="" />
-          <span data-en="Favorites">我的收藏</span>
-        </a>
-        <a class="screenshot" href="./gallery/models.jpg">
-          <img src="./gallery/models.jpg" width="1019" height="517" loading="lazy" alt="" />
-          <span data-en="Analysis Center">分析中心</span>
-        </a>
-        <a class="screenshot" href="./gallery/settings.jpg">
-          <img src="./gallery/settings.jpg" width="1265" height="712" loading="lazy" alt="" />
-          <span data-en="Settings">设置</span>
-        </a>
-        <a class="screenshot" href="./gallery/themes.jpg">
-          <img src="./gallery/themes.jpg" width="2400" height="840" loading="lazy" alt="" />
-          <span data-en="Light and dark themes">日间与夜间主题</span>
-        </a>
-        <a class="screenshot" href="./gallery/activity.jpg">
-          <img src="./gallery/activity.jpg" width="1019" height="250" loading="lazy" alt="" />
-          <span data-en="Activity log">变动记录</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="shell section launch-section" aria-labelledby="launch-title">
+    <section class="wrap extras section" id="screenshots" aria-labelledby="screenshots-title">
       <div>
-        <p class="eyebrow" data-en="Start with a sample folder">先从一个目录开始</p>
-        <h2 id="launch-title" data-en="See it run before using your library.">先试样片，再接自己的硬盘。</h2>
-        <p class="intro" data-en="The portable trial can play all six bundled clips offline. To make previews or convert your own videos, use an existing FFmpeg installation or run Setup-FFmpeg.cmd in the trial folder.">便携试用版自带六段样片，可离线播放。要为自己的视频生成预览或转换格式，可以使用已安装的 FFmpeg，或运行包内的 Setup-FFmpeg.cmd。</p>
+        <h2 id="screenshots-title" data-en="Desktop screenshots">桌面版截图</h2>
+        <p data-en="Open an original image in full size.">点选原图查看界面细节。</p>
       </div>
-      <div class="launch-links">
-        <a class="button primary" href="./demo/index.html"><span aria-hidden="true">▶</span><span data-en="Open the interactive demo">打开在线演示</span></a>
-        <a class="button outline" href="https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip"><span aria-hidden="true">↓</span><span data-en="Download for Windows">下载 Windows 版</span></a>
-        <a class="text-link" href="https://github.com/MNXOVZS/cinevault-local/releases/tag/v1.8.1-preview" data-en="Release notes and source">发布说明与源码</a>
-        <a class="text-link" href="https://github.com/MNXOVZS/cinevault-local#macos-与源码运行" data-en="macOS source instructions">macOS 源码运行说明</a>
+      <ul class="screenshot-links">
+        <li><a href="./gallery/library.jpg" data-en="Library">资料库</a></li>
+        <li><a href="./gallery/player.jpg" data-en="Player">播放器</a></li>
+        <li><a href="./gallery/favorites.jpg" data-en="Favorites">我的收藏</a></li>
+        <li><a href="./gallery/models.jpg" data-en="Model analysis">模型分析</a></li>
+        <li><a href="./gallery/settings.jpg" data-en="Settings">设置</a></li>
+        <li><a href="./gallery/themes.jpg" data-en="Light and dark themes">日间和夜间主题</a></li>
+        <li><a href="./gallery/activity.jpg" data-en="Activity log">变动记录</a></li>
+      </ul>
+    </section>
+
+    <section class="band" aria-labelledby="start-title">
+      <div class="wrap section start">
+        <div>
+          <h2 id="start-title" data-en="Try the samples, then link your own folder.">先看样片，再关联自己的文件夹。</h2>
+          <p class="feature-intro" data-en="On Windows x64, extract the ZIP and open Start-Trial.cmd. For previews and conversion of your own files, use FFmpeg or run the bundled Setup-FFmpeg.cmd. macOS has a source launcher, with testing on Mac hardware pending.">Windows x64 下载后解压，双击 Start-Trial.cmd。自己的视频需要生成预览或转换格式时，可使用已有 FFmpeg，或运行包内的 Setup-FFmpeg.cmd。macOS 提供源码启动脚本，实机验证待完成。</p>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="./demo/index.html" data-en="Open the demo">打开在线演示</a>
+          <a class="button secondary" href="https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip" data-en="Download for Windows">下载 Windows 版</a>
+          <a class="text-link" href="https://github.com/MNXOVZS/cinevault-local#macos-与源码运行" data-en="macOS and source setup">macOS 与源码运行</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <span>映库 · CineVault Local</span>
-      <nav aria-label="项目链接" data-en-label="Project links">
-        <a href="https://github.com/MNXOVZS/cinevault-local" data-en="Source and credits">源码与开源致谢</a>
-        <a href="https://github.com/MNXOVZS/cinevault-local/issues/new/choose" data-en="Report an issue">报告问题</a>
-      </nav>
-    </div>
+  <footer class="wrap site-footer">
+    <span>映库 · CineVault Local</span>
+    <nav aria-label="项目链接" data-en-label="Project links">
+      <a href="https://github.com/MNXOVZS/cinevault-local" data-en="Source and credits">源码与开源致谢</a>
+      <a href="https://github.com/MNXOVZS/cinevault-local/issues/new/choose" data-en="Report an issue">报告问题</a>
+    </nav>
   </footer>
 </body>
 </html>
