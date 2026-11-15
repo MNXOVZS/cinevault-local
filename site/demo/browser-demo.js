@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 固定样片清单、预览媒体、缩略图条和语言状态。
- * [OUTPUT]: 提供筛选、视窗内静音预览、播放器及时间轴跳转。
+ * [OUTPUT]: 提供筛选、静音预览、弹窗或原生播放及时间轴跳转。
  * [POS]: 公开演示的唯一交互模块。只读取站内的样片媒体。
  * [PROTOCOL]: Update this header on change, then check AGENTS.md
  */
@@ -17,6 +17,11 @@ const SAMPLES = [
 ];
 
 const grid = document.getElementById('clip-grid');
+const interactive = document.getElementById('demo-interactive');
+const fallback = document.getElementById('demo-fallback');
+const fallbackVideo = document.getElementById('fallback-video');
+const fallbackTitle = document.getElementById('fallback-title');
+const fallbackDirect = document.getElementById('fallback-direct');
 const query = document.getElementById('clip-search');
 const counter = document.getElementById('clip-count');
 const empty = document.getElementById('clip-empty');
@@ -26,14 +31,17 @@ const player = document.getElementById('viewer-video');
 const title = document.getElementById('viewer-title');
 const specs = document.getElementById('viewer-specs');
 const playerError = document.getElementById('viewer-error');
+const playerDirect = document.getElementById('viewer-direct');
 const timeline = document.getElementById('viewer-timeline');
 const thumb = document.getElementById('viewer-thumb');
 const thumbTime = thumb.querySelector('span');
 const currentTime = document.getElementById('viewer-time');
-const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const motion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+const hasModal = typeof viewer.showModal === 'function';
 const visible = new Set();
 let category = 'all';
 let selected = null;
+let fallbackClip = SAMPLES[0];
 
 function asset(name) {
   return new URL(name, ASSETS).href;
@@ -68,13 +76,13 @@ const cards = SAMPLES.map(clipElement);
 grid.append(...cards.map(card => card.button));
 
 function previewVisible() {
-  const enabled = !document.hidden && !viewer.open && !motion.matches && !navigator.connection?.saveData;
+  const enabled = !document.hidden && !viewer.open && fallbackVideo.paused && !motion?.matches && !navigator.connection?.saveData;
   const playing = new Set(enabled ? cards.filter(card => visible.has(card.button) && !card.button.hidden).slice(0, 4) : []);
   for (const card of cards) {
     const { video, clip } = card;
     if (playing.has(card)) {
       if (!video.hasAttribute('src')) video.src = asset(clip.id + '-preview.mp4');
-      if (video.paused) video.play().catch(() => {});
+      if (video.paused) video.play()?.catch(() => {});
     } else if (!video.paused) {
       video.pause();
     }
@@ -115,25 +123,49 @@ function formatTime(seconds) {
 
 function refreshMetadata() {
   document.title = isEnglish() ? 'Sample library | CineVault Local' : '演示片库｜映库 · CineVault Local';
+  fallbackTitle.textContent = localName(fallbackClip);
   if (!selected) return;
   title.textContent = localName(selected);
   specs.textContent = `${selected.size ?? '1280 × 720'} · H.264 · ${localTags(selected).join(' · ')}`;
 }
 
+function openInline(clip) {
+  fallbackClip = clip;
+  fallbackTitle.textContent = localName(clip);
+  fallbackDirect.href = asset(clip.id + '.mp4');
+  fallbackVideo.src = fallbackDirect.href;
+  fallbackVideo.poster = asset(clip.id + '.webp');
+  fallback.hidden = false;
+  fallback.scrollIntoView();
+  fallbackVideo.play()?.catch(() => {});
+}
+
 function open(clip) {
+  if (!hasModal) {
+    openInline(clip);
+    return;
+  }
   selected = clip;
+  refreshMetadata();
+  try {
+    viewer.showModal();
+  } catch {
+    selected = null;
+    openInline(clip);
+    return;
+  }
   playerError.hidden = true;
   timeline.max = 8;
   timeline.value = 0;
   thumb.hidden = true;
   thumb.style.setProperty('--thumb-image', `url("${asset(clip.id + '-frames.webp')}")`);
   currentTime.textContent = '0:00 / 0:08';
-  refreshMetadata();
+  fallbackVideo.pause();
   player.poster = asset(clip.id + '.webp');
   player.src = asset(clip.id + '.mp4');
-  viewer.showModal();
+  playerDirect.href = player.src;
   previewVisible();
-  player.play().catch(() => {});
+  player.play()?.catch(() => {});
 }
 
 function showThumbnail(fraction) {
@@ -173,7 +205,11 @@ document.addEventListener('cinevault-language', () => {
   filter();
   refreshMetadata();
 });
-motion.addEventListener('change', previewVisible);
+if (motion?.addEventListener) motion.addEventListener('change', previewVisible);
+else motion?.addListener?.(previewVisible);
+fallbackVideo.addEventListener('play', previewVisible);
+fallbackVideo.addEventListener('pause', previewVisible);
+fallbackVideo.addEventListener('ended', previewVisible);
 viewer.addEventListener('close', () => {
   selected = null;
   player.pause();
@@ -203,3 +239,5 @@ timeline.addEventListener('pointerleave', () => { thumb.hidden = true; });
 
 filter();
 refreshMetadata();
+interactive.hidden = false;
+if (hasModal && fallbackVideo.paused) fallback.hidden = true;

@@ -1,6 +1,6 @@
 # 映库 · CineVault Local
 
-[**Try online**](https://mnxovzs.github.io/cinevault-local/demo/?lang=en) · [**Download for Windows**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [Product site](https://mnxovzs.github.io/cinevault-local/?lang=en) · [简体中文](README.md)
+[**Open the interactive demo**](https://mnxovzs.github.io/cinevault-local/demo/index.html?lang=en) · [**Download for Windows**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [Product site](https://mnxovzs.github.io/cinevault-local/?lang=en) · [简体中文](README.md)
 
 **Find the clip you remember on an external drive, without moving the original.**
 
@@ -8,7 +8,7 @@ CineVault Local indexes folders you choose. Videos preview as you scroll, and sa
 
 The online demo has public, non-adult sample videos. Search the samples, try a filter, play a clip, or scrub the timeline. The desktop version is where you link your own folders.
 
-![CineVault Local library with synthetic demos of phone videos, animation, short clips, and an 18+ section](docs/screenshots/library.jpg)
+[![CineVault Local library with synthetic demos of phone clips, animation, and an 18+ group](docs/screenshots/library.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/library.jpg)
 
 ## Browse, find, and watch
 
@@ -20,19 +20,19 @@ The online demo has public, non-adult sample videos. Search the samples, try a f
 
 ## Screenshots
 
-The public gallery uses synthetic demo material. The black-and-white 18+ slate shows manual grouping. Qwen3-VL produced the train motion and bridge tags from two sampled frames of the train clip.
+Select a screenshot to open the original, or browse the [full gallery](https://mnxovzs.github.io/cinevault-local/?lang=en#screenshots). Screenshots use synthetic demo material. The black-and-white 18+ slate shows manual grouping. Qwen3-VL produced the train motion and bridge tags from two sampled frames of the train clip.
 
 | Player and thumbnail scrubbing | Favorites |
 | --- | --- |
-| ![Playback and sampled timeline frames](docs/screenshots/player.jpg) | ![Favorites view](docs/screenshots/favorites.jpg) |
+| [![Playback and sampled timeline frames](docs/screenshots/player.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/player.jpg) | [![Favorites view](docs/screenshots/favorites.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/favorites.jpg) |
 | **Analysis Center** | **Settings** |
-| ![Local model selection and analysis tasks](docs/screenshots/models.jpg) | ![Source, playback, and file protection settings](docs/screenshots/settings.jpg) |
+| [![Local model selection and analysis tasks](docs/screenshots/models.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/models.jpg) | [![Source, playback, and file protection settings](docs/screenshots/settings.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/settings.jpg) |
 
 **Light and dark themes**
 
-![Side-by-side views of the light and dark themes](docs/screenshots/themes.jpg)
+[![Side-by-side views of the light and dark themes](docs/screenshots/themes.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/themes.jpg)
 
-[See the activity log and item counts](docs/screenshots/activity.jpg)
+[Open the activity log and item counts screenshot](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/activity.jpg)
 
 ## Try the portable Windows edition
 

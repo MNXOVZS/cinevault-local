@@ -10,6 +10,6 @@
 - `settings.jpg` 展示外观、自动整理与播放设置。
 - `themes.jpg` 并排展示同一片库的日间和夜间主题。
 
-截图只取自合成资料库。更换截图时核对路径与画面内容。
+截图只取自合成资料库。产品页与仓库首页均提供原图入口。
 
 [PROTOCOL]: Update this header on change, then check AGENTS.md

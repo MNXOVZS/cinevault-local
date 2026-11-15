@@ -1,5 +1,5 @@
 /**
- * [INPUT]: 页面默认中文文案、英文对照和浏览器语言。
+ * [INPUT]: 双语文案、链接语言参数和浏览器语言。
  * [OUTPUT]: 更新双语文案、辅助标签和当前语言事件。
  * [POS]: 介绍页与演示页共用语言入口。
  * [PROTOCOL]: Update this header on change, then check AGENTS.md
@@ -14,6 +14,8 @@ const entries = [...document.querySelectorAll('[data-en], [data-en-label], [data
   },
 }));
 const button = document.querySelector('[data-language]');
+const requested = new URLSearchParams(window.location.search).get('lang');
+const hasLanguage = requested === 'en' || requested === 'zh';
 let saved = '';
 try {
   saved = localStorage.getItem('cinevault-site-language') || '';
@@ -41,13 +43,24 @@ export function isEnglish() {
   return document.documentElement.lang === 'en';
 }
 
-apply(saved === 'en' || (saved !== 'zh' && !navigator.language.toLowerCase().startsWith('zh')) ? 'en' : 'zh');
-button?.addEventListener('click', () => {
-  const language = isEnglish() ? 'zh' : 'en';
+function remember(language) {
   try {
     localStorage.setItem('cinevault-site-language', language);
   } catch {
     // 切换仍能生效。
   }
+}
+
+const browserLanguage = navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+apply(hasLanguage ? requested : saved || browserLanguage);
+if (hasLanguage) remember(requested);
+button?.addEventListener('click', () => {
+  const language = isEnglish() ? 'zh' : 'en';
   apply(language);
+  remember(language);
+  if (hasLanguage && window.location.protocol.startsWith('http')) {
+    const current = new URL(window.location.href);
+    current.searchParams.set('lang', language);
+    history.replaceState(history.state, '', current);
+  }
 });

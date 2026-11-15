@@ -2,6 +2,6 @@
 
 > L2 | 上级 [AGENTS.md](../AGENTS.md)
 
-- `pages.yml` 仅部署主分支的产品页、合成样片与站点所需截图。
+- `pages.yml` 仅部署主分支的产品页、合成样片与七张截图原图。
 
 [PROTOCOL]: Update this header on change, then check AGENTS.md

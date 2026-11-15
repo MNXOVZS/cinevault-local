@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   [INPUT]: 演示样片、预览短片、时间轴缩略图与双语界面。
-  [OUTPUT]: 提供无安装的浏览、搜索、播放与跳转。
+  [OUTPUT]: 提供原生样片播放、浏览、搜索与跳转。
   [POS]: 公开演示不连接桌面资料库。
   [PROTOCOL]: Update this header on change, then check AGENTS.md
 -->
@@ -12,8 +12,10 @@
   <meta name="description" content="在线体验映库的短片预览、搜索、播放器和时间轴。演示只使用六段公开合成样片。">
   <meta name="theme-color" content="#101411">
   <title>演示片库｜映库 · CineVault Local</title>
+  <link rel="canonical" href="https://mnxovzs.github.io/cinevault-local/demo/">
   <link rel="icon" href="../mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./fallback.css">
   <script type="module" src="./browser-demo.js"></script>
 </head>
 <body>
@@ -37,23 +39,31 @@
       <h1 data-en="Sample library">演示片库</h1>
       <p data-en="Browse six synthetic clips, search by tag, or open a clip and scrub to a moment.">浏览六段合成样片。可以按标签搜索，点开播放，再拖时间轴找画面。</p>
     </header>
-    <div class="demo-controls">
-      <div class="search-row">
-        <div class="search-box">
-          <input id="clip-search" type="search" autocomplete="off" placeholder="搜索标题或标签，例如：列车" aria-label="搜索样片标题或标签" data-en-label="Search sample titles or tags" data-en-placeholder="Search clips or tags, e.g. train">
+    <section class="demo-fallback" id="demo-fallback" aria-labelledby="fallback-heading">
+      <h2 id="fallback-heading" data-en="Play a sample clip">直接播放样片</h2>
+      <p id="fallback-title">山谷列车</p>
+      <video id="fallback-video" src="../assets/valley.mp4" poster="../assets/valley.webp" controls playsinline preload="none" width="1280" height="720" aria-label="样片播放器" data-en-label="Sample player"></video>
+      <p><a class="text-link" id="fallback-direct" href="../assets/valley.mp4" data-en="Open the sample MP4 directly">单独打开样片 MP4</a></p>
+    </section>
+    <div id="demo-interactive" hidden>
+      <div class="demo-controls">
+        <div class="search-row">
+          <div class="search-box">
+            <input id="clip-search" type="search" autocomplete="off" placeholder="搜索标题或标签，例如：列车" aria-label="搜索样片标题或标签" data-en-label="Search sample titles or tags" data-en-placeholder="Search clips or tags, e.g. train">
+          </div>
+          <p class="count" id="clip-count" aria-live="polite"></p>
         </div>
-        <p class="count" id="clip-count" aria-live="polite"></p>
+        <div class="filters" role="group" aria-label="样片分类" data-en-label="Sample categories">
+          <button class="filter" type="button" data-category="all" aria-pressed="true" data-en="All clips">全部</button>
+          <button class="filter" type="button" data-category="landscape" aria-pressed="false" data-en="Scenery">风景</button>
+          <button class="filter" type="button" data-category="phone" aria-pressed="false" data-en="Phone video">手机视频</button>
+          <button class="filter" type="button" data-category="comic" aria-pressed="false" data-en="Motion comic">漫剧</button>
+        </div>
       </div>
-      <div class="filters" role="group" aria-label="样片分类" data-en-label="Sample categories">
-        <button class="filter" type="button" data-category="all" aria-pressed="true" data-en="All clips">全部</button>
-        <button class="filter" type="button" data-category="landscape" aria-pressed="false" data-en="Scenery">风景</button>
-        <button class="filter" type="button" data-category="phone" aria-pressed="false" data-en="Phone video">手机视频</button>
-        <button class="filter" type="button" data-category="comic" aria-pressed="false" data-en="Motion comic">漫剧</button>
-      </div>
+      <div class="demo-grid" id="clip-grid"></div>
+      <p class="empty" id="clip-empty" data-en="No matching clips. Try a category or a different search." hidden>没有匹配的样片。试试另一个分类或关键词。</p>
     </div>
-    <div class="demo-grid" id="clip-grid"></div>
-    <p class="empty" id="clip-empty" data-en="No matching clips. Try a category or a different search." hidden>没有匹配的样片。试试另一个分类或关键词。</p>
-    <noscript><p class="empty">请启用 JavaScript 以播放和检索样片。 Enable JavaScript to play and search the samples.</p></noscript>
+    <noscript><p class="muted-note">上方播放器可以直接使用。搜索、筛选和时间轴缩略图需要 JavaScript。 The player above works without JavaScript.</p></noscript>
     <p class="muted-note" data-en="This demo uses only its sample files and cannot access your computer’s library. The Windows app can scan your own folders.">本页只读取演示样片。要关联自己的文件夹，请使用 Windows 试用版。</p>
   </main>
 
@@ -67,7 +77,10 @@
     <video id="viewer-video" controls playsinline preload="metadata" aria-label="样片播放器" data-en-label="Sample player"></video>
     <div class="player-details">
       <p class="player-metadata" id="viewer-specs"></p>
-      <p class="player-metadata" id="viewer-error" role="status" data-en="This clip could not be played. Please reload the page and try again." hidden>这段样片未能播放。请刷新后再试。</p>
+      <p class="player-metadata" id="viewer-error" role="status" hidden>
+        <span data-en="The embedded player could not load this clip.">页面内的播放器暂时无法播放这段样片。</span>
+        <a class="text-link" id="viewer-direct" href="../assets/valley.mp4" data-en="Open the sample MP4 directly">单独打开样片 MP4</a>
+      </p>
       <div class="timeline">
         <label for="viewer-timeline" data-en="Frame preview timeline">画面预览时间轴</label>
         <div class="thumb-hint" id="viewer-thumb" aria-hidden="true" hidden><div></div><span></span></div>

@@ -1,6 +1,6 @@
 # 映库 · CineVault Local
 
-[**在线体验**](https://mnxovzs.github.io/cinevault-local/demo/) · [**下载 Windows 版**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [产品介绍](https://mnxovzs.github.io/cinevault-local/) · [English](README.en.md)
+[**打开在线演示网页**](https://mnxovzs.github.io/cinevault-local/demo/index.html) · [**下载 Windows 版**](https://github.com/MNXOVZS/cinevault-local/releases/download/v1.8.1-preview/CineVault-Local-Windows-x64.zip) · [产品介绍](https://mnxovzs.github.io/cinevault-local/) · [English](README.en.md)
 
 **不用搬原片，把外接硬盘里叫不出名字的视频变成一眼能找的影库。**
 
@@ -8,7 +8,7 @@
 
 在线演示使用公开的非成人样片。点开就能搜、筛选、看预览和拖时间轴，无需安装或注册。要关联自己的硬盘，请使用本机版本。
 
-![映库首页：手机视频、动画、短片及 18+ 分类的非露骨合成演示素材](docs/screenshots/library.jpg)
+[![映库首页，包括手机视频、动画和 18+ 分组的合成示例](docs/screenshots/library.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/library.jpg)
 
 ## 看得快，找得准
 
@@ -20,19 +20,19 @@
 
 ## 界面一览
 
-公开截图均使用合成演示资料。黑白 18+ 提示卡演示手动分区。列车短片的「火车行驶」「古桥」是 Qwen3-VL 从两张抽样图生成的标签。
+点击任意截图可打开原图，也可以在[官网图集](https://mnxovzs.github.io/cinevault-local/#screenshots)浏览。截图均使用合成演示资料。黑白 18+ 提示卡演示手动分区。列车短片的「火车行驶」「古桥」是 Qwen3-VL 从两张抽样图生成的标签。
 
 | 播放器和时间轴 | 我的收藏 |
 | --- | --- |
-| ![播放器：清晰度与时间轴的抽样缩略图](docs/screenshots/player.jpg) | ![我的收藏：单独浏览收藏的资料](docs/screenshots/favorites.jpg) |
+| [![播放器的清晰度与时间轴抽样缩略图](docs/screenshots/player.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/player.jpg) | [![我的收藏](docs/screenshots/favorites.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/favorites.jpg) |
 | **分析中心** | **设置** |
-| ![分析中心：本机视觉模型、任务与状态](docs/screenshots/models.jpg) | ![设置：来源目录、播放和本机保护选项](docs/screenshots/settings.jpg) |
+| [![分析中心的本机模型、任务与状态](docs/screenshots/models.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/models.jpg) | [![设置里的来源目录、播放和保护选项](docs/screenshots/settings.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/settings.jpg) |
 
 **日间 / 夜间主题对比**
 
-![同一套映库界面的日间和夜间主题对比](docs/screenshots/themes.jpg)
+[![同一套映库界面的日间和夜间主题对比](docs/screenshots/themes.jpg)](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/themes.jpg)
 
-[查看变动记录与数量核对](docs/screenshots/activity.jpg)
+[查看变动记录与数量核对原图](https://raw.githubusercontent.com/MNXOVZS/cinevault-local/main/docs/screenshots/activity.jpg)
 
 ## Windows 便携试用
 

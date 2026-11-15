@@ -1,0 +1,30 @@
+/**
+ * [INPUT]: 演示页原生播放器与站点颜色。
+ * [OUTPUT]: 在窄屏限制播放器宽度并露出原片入口。
+ * [POS]: JavaScript 载入前与旧浏览器的播放器样式。
+ * [PROTOCOL]: Update this header on change, then check AGENTS.md
+ */
+.viewer:not([open]) {
+  display: none;
+}
+.demo-fallback {
+  width: min(100%, 52rem);
+  margin: 0 0 1.5rem;
+}
+.demo-fallback h2 {
+  font-size: 1.35rem;
+}
+.demo-fallback p {
+  margin-block: .45rem .7rem;
+  color: var(--muted);
+}
+.demo-fallback video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: 58vh;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: .65rem;
+  background: #060806;
+}
